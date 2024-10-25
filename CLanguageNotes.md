@@ -35,6 +35,7 @@
 18. 赋值与复合赋值的区别：
     - 从计算机来看是等效的；
     - 从内存看复合赋值不会使用临时变量，而是直接将结果赋值，赋值语句将右边算术结果存于临时变量，再赋值给左边。
+19. 对于指针变量p，`p = NULL;`等价于`p = 0;`。
 
 ## 原题
 
@@ -66,7 +67,7 @@
      - `gets()`会将输入流中的回车`'\n'`转换为`'\0'`存入`ss`中，此后`ss = 'ABC\0,3,4,5\0'`；
      - `strcat()`会从第一个`'\0'`开始拼接两个字符串，此后`ss = 'ABC6789\0,5\0'`；
      - 输出时读取到第一个`'\0'`就会停止。
-   ```
+   ```C
    #include  “stdio.h"  
    #include  “string.h"  
    int main()  
@@ -79,7 +80,7 @@
    }
    ```
 5. 辨析：
-   ```
+   ```C
    int *p[n];//指针数组
    int (*)p[n];//非法，括号内的*没有关联变量或类型名
    int *p()；//指针函数
@@ -93,7 +94,7 @@
    P0->P1->P3
      ->P2
    ```
-   ```
+   ```C
    #include <unistd.h>
    #include <stdio.h>
    int main(void) {
@@ -107,4 +108,34 @@
        }
        return 0;
    }
+   ```
+7. 以下代码存在的问题。
+   ```C
+   <pre>
+      void func1(char *e){
+         char *p1;
+         p1=malloc(100);//C中可以不用强制类型转换，但其申请的空间在后面没有被释放
+         sprintf(p1,error:"%s'.",e);//gpt说此处可能溢出
+         local_log(p1);
+      }
+   </pre>
+   <pre>
+      int func2(char *filename){
+         FILE *fp;
+         int key;
+         fp=fopen(filename,"r");//打开流在后面未关闭
+         fscanf(fp,"%d",&key);
+         return key;
+      }
+   </pre>
+   <pre>
+      void func3(char *info){
+         char *p,*pp;
+         p=malloc(100);
+         pp=p;
+         free(p);
+         sprintf(pp,*info:"%s'.",info);
+         free(pp);//pp和p所指的空间是一样的，这里free了同一块空间
+      }
+   </pre>
    ```
