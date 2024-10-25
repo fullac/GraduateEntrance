@@ -1,6 +1,9 @@
 # C
+> rewind
+> 
 ## 说在前面
 刷题中C和C++的题杂糅在一起，下文的知识点也是杂糅的，请注意！
+
 ## Grammar
 1. `struct`存在字节对齐。
 2. C允许赋值使用连等，声明不允许连等。即`int a = b = 1;`是错的，但是`a = b = 1;`是对的。
@@ -44,13 +47,14 @@
 21. 指针可以进行比较大小、赋值、减法，但不能进行加法。减法运算的意义是丘两个地址的距离，而加法是没有意义的。
 
 ## Function&System Call
-1. fseek函数：`int fseek( FILE *stream, long offset, int origin );`，三个参数分别为，文件指针，位移量，起始点。功能为移动到文件的某一个位置。
-2. `strlen()`的参数必须是`const char *`，其计算长度的方法是，计算开始至第一个终止符`'\0'`的距离（不含`'\0'`），若没有则结果未知。
-    > `sizeof()`是运算符，返回所占内存字节数，因此用`sizeof()`计算C风格字符串时，结果会多计算一个终止符。
-3. ftell函数：`int fseek(FILE *stream, long int offset, int whence);`， 
-    
-## Questions
+1. fseek函数：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
+   > 三个参数分别为，文件指针，位移量，起始点。
+2. strlen函数：`strlen()`的参数必须是`const char *`，其计算长度的方法是，计算开始至第一个终止符`'\0'`的距离（不含`'\0'`），若没有则结果未知。
+   > `sizeof()`是运算符，返回所占内存字节数，因此用`sizeof()`计算C风格字符串时，结果会多计算一个终止符。
+3. ftell函数：`long ftell(FILE *stream);`，得到文件位置指针当前位置相对于文件首的偏移字节数。
+4. rewind函数：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
 
+## Questions
 1. 输出结果为`-1`。
   字符型占一字节在赋值0xFFFF时会截断，此时x的值为FF即11111111。
   内存中的数据是带符号补码表示，其原码为10000001，即-1。
