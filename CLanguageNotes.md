@@ -55,6 +55,8 @@
     - `32bit: bool/char/uchar 1B, short int 2B, double/ll 8B, else(include **pointer**) 4B`
     - `64bit: bool/char/uchar 1B, short int 2B, long/ulong/double/ll/**pointer** 8B, else 4B`
 25. IEEE754标准下float浮点类型的格式: 1bit符号位，8bit阶码位，23bit尾数位。阶码真值取值范围为-126~127，即阶码数值-偏置值127。
+26. for循环和while循环一样，一旦判断为否就会结束。
+27. 以下运算符的优先级大于乘、除、模：`-负号, ~按位取反, ++自增, --自减, *取值, &取址, !逻辑非, (typename)强制类型转换, sizeof()长度运算符`
 
 ## II Function&System Call
 1. fseek函数：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
