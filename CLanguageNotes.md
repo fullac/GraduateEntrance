@@ -52,8 +52,8 @@
 22. C语言程序能够在不同的操作系统下运行，这说明C语言具有很好的移植性。（硬件兼容，软件移植）
 23. '\0'的值为0，在内存中的存储值为00000000，它是ASCII的第一个字符（控制字符）。
 24. C语言中**数据类型长度**：
-    - 32bit: bool/char/uchar 1B, short int 2B, double/ll 8B, else(include **pointer**) 4B
-    - 64bit: bool/char/uchar 1B, short int 2B, long/ulong/double/ll/**pointer** 8B, else 4B
+    - `32bit: bool/char/uchar 1B, short int 2B, double/ll 8B, else(include **pointer**) 4B`
+    - `64bit: bool/char/uchar 1B, short int 2B, long/ulong/double/ll/**pointer** 8B, else 4B`
 25. IEEE754std float type: 1bit符号位，8bit阶码位，23bit尾数位。阶码真值取值范围为-126~127，即阶码数值-偏置值127。
 
 ## II Function&System Call
