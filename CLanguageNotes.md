@@ -54,7 +54,7 @@
 24. C语言中**数据类型长度**：
     - `32bit: bool/char/uchar 1B, short int 2B, double/ll 8B, else(include **pointer**) 4B`
     - `64bit: bool/char/uchar 1B, short int 2B, long/ulong/double/ll/**pointer** 8B, else 4B`
-25. IEEE754std float type: 1bit符号位，8bit阶码位，23bit尾数位。阶码真值取值范围为-126~127，即阶码数值-偏置值127。
+25. IEEE754标准下float浮点类型的格式: 1bit符号位，8bit阶码位，23bit尾数位。阶码真值取值范围为-126~127，即阶码数值-偏置值127。
 
 ## II Function&System Call
 1. fseek函数：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
