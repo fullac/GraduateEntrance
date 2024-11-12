@@ -55,8 +55,8 @@
 22. C语言程序能够在不同的操作系统下运行，这说明C语言具有很好的移植性。（硬件兼容，软件移植）
 23. '\0'的值为0，在内存中的存储值为00000000，它是ASCII的第一个字符（控制字符）。
 24. C语言中数据类型长度：
-    - `32bit: bool/char/uchar 1B, short int 2B, double/ll 8B, else(include **pointer**) 4B`
-    - `64bit: bool/char/uchar 1B, short int 2B, long/ulong/double/ll/**pointer** 8B, else 4B`
+    - `32bit: bool/char/uchar 1B, short/ushort 2B, double/ll 8B, else(include pointer) 4B`
+    - `64bit: bool/char/uchar 1B, short/ushort 2B, long/ulong/double/ll/pointer 8B, else 4B`
 25. IEEE754标准下float浮点类型的格式: 1bit符号位，8bit阶码位，23bit尾数位。阶码真值取值范围为-126~127，即阶码数值-偏置值127。
 26. for循环和while循环一样，一旦判断为否就会结束。
 27. 以下运算符的优先级大于乘、除、模：`-负号, ~按位取反, ++自增, --自减, *取值, &取址, !逻辑非, (typename)强制类型转换, sizeof()长度运算符`。
@@ -84,6 +84,7 @@
     - `.bss`：未初始化；
     - `.data`：已初始化以及常量；
     - `.text`：代码。
+37. 空结构体的大小为0字节（用编译器试过），但是sbGPT说C语言空结构体会报错或是大小为1字节。
 ## II Function&System Call
 1. fseek函数：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
    > 三个参数分别为，文件指针，位移量，起始点。
