@@ -79,12 +79,18 @@
     - 堆区：此区域需要程序员手动释放，否则可能由OS在程序结束时释放；
     - 全局（静态）区：包括全局变量、静态（全局/局部）变量，已初始化存放于`.data`，未初始化存放于`.bass(Block Started by Symbol)`；
     - 文字常量区`.rodata`：例如"abc"；
-    - 代码区`.text`
+    - 代码区`.text`。
 36. **可执行程序的三段：**
     - `.bss`：未初始化；
     - `.data`：已初始化以及常量；
     - `.text`：代码。
 37. 空结构体的大小为0字节（用编译器试过），但是sbGPT说C语言空结构体会报错或是大小为1字节。
+38. 什么是字符串比较大小：比较的是每位的ASCII码值大小。
+39. 常量指针：`const int* p;`or`int const* p;`
+40. 指针常量：`int *const p;`
+41. C语言结构体中不允许有函数，但是C++允许
+
+
 ## II Function&System Call
 1. fseek函数：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
    > 三个参数分别为，文件指针，位移量，起始点。
@@ -174,33 +180,27 @@
    ```
 7. 以下代码存在的问题。
    ```C
-   <pre>
-      void func1(char *e){
-         char *p1;
-         p1=malloc(100);//C中可以不用强制类型转换，但其申请的空间在后面没有被释放
-         sprintf(p1,error:"%s'.",e);//gpt说此处可能溢出
-         local_log(p1);
-      }
-   </pre>
-   <pre>
-      int func2(char *filename){
-         FILE *fp;
-         int key;
-         fp=fopen(filename,"r");//打开流在后面未关闭
-         fscanf(fp,"%d",&key);
-         return key;
-      }
-   </pre>
-   <pre>
-      void func3(char *info){
-         char *p,*pp;
-         p=malloc(100);
-         pp=p;
-         free(p);
-         sprintf(pp,*info:"%s'.",info);
-         free(pp);//pp和p所指的空间是一样的，这里free了同一块空间
-      }
-   </pre>
+   void func1(char *e){
+      char *p1;
+      p1=malloc(100);//C中可以不用强制类型转换，但其申请的空间在后面没有被释放
+      sprintf(p1,error:"%s'.",e);//gpt说此处可能溢出
+      local_log(p1);
+   }
+   int func2(char *filename){
+      FILE *fp;
+      int key;
+      fp=fopen(filename,"r");//打开流在后面未关闭
+      fscanf(fp,"%d",&key);
+      return key;
+   }
+   void func3(char *info){
+      char *p,*pp;
+      p=malloc(100);
+      pp=p;
+      free(p);
+      sprintf(pp,*info:"%s'.",info);
+      free(pp);//pp和p所指的空间是一样的，这里free了同一块空间
+   }
    ```
 8. 以下函数中，和其他函数不属于一类的是fseek。`{ read, pread, write, pwrite, fseek, lseek}` 。只有fseek是库函数，其他都是系统调用
 9. “函数中的静态变量,在函数退出后不被释放”，这句话不完全正确，主函数作为程序的入口在退出后会释放静态变量。
@@ -211,3 +211,39 @@
        p = (char *)malloc(100); // *p = (char *)malloc(100);
     }
     ```
+11. 下列代码输出的是什么：`x=tse,y=`
+   ```c
+   #include<stdio.h>
+   #include<string.h>
+   int main(void){
+   int n;
+   char y[10] = "ntse";// char型数组y，前五个元素分别为'n','t','s','e','\0'
+   char *x = y;// char型指针，指向y的第一个元素的地址
+   n = strlen(x);// strlen（refer to Function&System Call.2）的算法是直到找到第一个'\0'才停止寻找，必须传入char*类型的参数，因此这里得到的n = 4
+   *x = x[n];// 将x[4]赋值给x的解引用，即将y[4]赋值给y[0]，y[] = {'\0','t','s','e','\0'}
+   x++;// x变为指向y[1]的指针
+   printf("x=%s,", x);// printf遇到第一个'\0'即停止，因此x输出为tse
+   printf("y=%s\n", y);// printf遇到第一个'\0'即停止，因此y输出为空
+   return 0;
+   }
+   ```
+12. 下文程序在下x86机器上运行的结果：30
+   ```c
+   //请注意在x86机器上一般为**小端存储的4字节对齐**
+   struct mybitfields
+   {
+       unsigned short a : 4;//位域
+       unsigned short b : 5;
+       unsigned short c : 7;
+   } test
+   void main(void)
+   {
+       int i;
+       test.a = 2;
+       test.b = 3;
+       test.c = 0;
+   
+       i = *((short *)&test);
+       printf("%d\n", i);
+   }
+   ```
