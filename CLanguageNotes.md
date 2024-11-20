@@ -122,7 +122,7 @@
 43. C语言结构体中不允许有函数，但是C++允许
 
 
-## II Function&System Call
+## II Function&Macro&System Call
 1. **fseek函数**：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
    > 三个参数分别为，文件指针，位移量，起始点。
 2. **strlen函数**：`strlen()`的参数必须是`const char *`，其计算长度的方法是，计算开始至第一个终止符`'\0'`的距离（不含`'\0'`），若没有则结果未知。
@@ -141,8 +141,19 @@
    - 返回正：str1 > str2
    - 返回负：str1 < str2
 9. **strcat函数**：`char *strcat(char *dest, const char *src);`，将后者追加至前者（第一个'\n'前的字符串）末尾。
+10. **assert宏**：void assert(int expression)，断言出错将输出错误信息并终止程序，无返回值。定义于<assert.h>
 
-## III Questions
+## III StandardLib
+1. <assert.h>
+   - assert
+   - NDEBUG
+2. <ctype.h>
+3. 
+
+
+
+
+## IV Questions
 1. 输出结果为`-1`。
   字符型占一字节在赋值0xFFFF时会截断，此时x的值为FF即11111111。
   内存中的数据是带符号补码表示，其原码为10000001，即-1。
