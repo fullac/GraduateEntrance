@@ -120,6 +120,7 @@
 41. 常量指针：`const int* p;`or`int const* p;`
 42. 指针常量：`int *const p;`
 43. C语言结构体中不允许有函数，但是C++允许
+44. 关于枚举类：
 
 
 ## II Function&Macro&System Call
