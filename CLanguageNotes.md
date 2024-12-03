@@ -134,28 +134,38 @@
 
 
 ## II Function&Macro&System Call
+### <stdio.h>
 1. <mark>**fseek函数，seek寻找，目标位置**</mark>：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
    > 三个参数分别为，文件指针，位移量，起始点。
-2. **strlen函数**：`strlen()`的参数必须是`const char *`，其计算长度的方法是，计算开始至第一个终止符`'\0'`的距离（不含`'\0'`），若没有则结果未知。
-   > `sizeof()`是运算符，返回所占内存字节数，因此用`sizeof()`计算C风格字符串时，结果会多计算一个终止符。
+2. <mark>**rewind函数，rewind倒带，重回开头**</mark>：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
 3. <mark>**ftell函数，tell告知，偏移量**</mark>：`long ftell(FILE *stream);`，得到文件位置指针当前位置相对于文件首的偏移字节数。
-4. <mark>**rewind函数，rewind倒带，重回开头**</mark>：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
-5. **write函数**：`ssize_t write(int handle, void *buf, int nbyte);`，能够把指定长度的字节序列从缓冲区插入到输出流中。
-6. 文件读写：
+4. 文件读写：
    - `fgetc`：读一个字符。成功返回该字符的`unsigned char`强制转换为`int`的结果，失败返回`EOF`。
    - `fgets`：读出字符串。成功返回指针，失败返回`NULL`。
    - `fputc`：写一个字符。成功返回写入的字符，失败返回`EOF`。
    - `fputs`：写入字符串。成功返回非负值，失败返回`EOF`。
-7. **scanf函数**：`int scanf(const char * restrict format,...);`，返回成功匹配和赋值的个数。如果到达文件末尾或发生读错误，则返回 EOF。
-8. **strcmp函数**：`int strcmp(const char *str1, const char *str2);`，通过ASCII比较两个字符串的大小
+5. **scanf函数**：`int scanf(const char * restrict format,...);`，返回成功匹配和赋值的个数。如果到达文件末尾或发生读错误，则返回 EOF。
+
+### <string.h>
+1. **strlen函数**：`strlen()`的参数必须是`const char *`，其计算长度的方法是，计算开始至第一个终止符`'\0'`的距离（不含`'\0'`），若没有则结果未知。
+   > `sizeof()`是运算符，返回所占内存字节数，因此用`sizeof()`计算C风格字符串时，结果会多计算一个终止符。
+2. **strcmp函数**：`int strcmp(const char *str1, const char *str2);`，通过ASCII比较两个字符串的大小
    - 返回0：相等
    - 返回正：str1 > str2
    - 返回负：str1 < str2
-9. <mark>**strcat函数，catenate链接，拼接字符串**</mark>：`char *strcat(char *dest, const char *src);`，将后者追加至前者（第一个'\n'前的字符串）末尾。
-10. **assert宏**：`void assert(int expression);`，断言出错将输出错误信息并终止程序，无返回值。定义于<assert.h>。
-11. **malloc函数**：`void *malloc(int num);`，**C语言中malloc不需要强制类型转换，从void*到其他类型的指针是自动隐式转换的。**。定义于<stdlib.h>。
+3. <mark>**strcat函数，catenate链接，拼接字符串**</mark>：`char *strcat(char *dest, const char *src);`，将后者追加至前者（第一个'\n'前的字符串）末尾。
 
-## III StandardLibrary
+### <unistd.h>  not std
+1. **write函数**：`ssize_t write(int handle, void *buf, int nbyte);`，能够把指定长度的字节序列从缓冲区插入到输出流中。
+   
+### <stdlib.h>
+1. **malloc函数**：`void *malloc(int num);`，**C语言中malloc不需要强制类型转换，从void*到其他类型的指针是自动隐式转换的。**。定义于<stdlib.h>。
+
+### system call
+1. **assert宏**：`void assert(int expression);`，断言出错将输出错误信息并终止程序，无返回值。定义于<assert.h>。
+
+
+## ~~III StandardLibrary~~
 1. <assert.h>
    - assert
    - NDEBUG
@@ -165,7 +175,7 @@
 
 
 
-## IV Questions
+## III Questions
 1. 输出结果为`-1`。
   字符型占一字节在赋值0xFFFF时会截断，此时x的值为FF即11111111。
   内存中的数据是带符号补码表示，其原码为10000001，即-1。
