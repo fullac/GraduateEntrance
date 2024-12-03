@@ -134,12 +134,12 @@
 
 
 ## II Function&Macro&System Call
-1. **fseek函数，seek寻找，目标位置**：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
+1. <mark>**fseek函数，seek寻找，目标位置**</mark>：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
    > 三个参数分别为，文件指针，位移量，起始点。
 2. **strlen函数**：`strlen()`的参数必须是`const char *`，其计算长度的方法是，计算开始至第一个终止符`'\0'`的距离（不含`'\0'`），若没有则结果未知。
    > `sizeof()`是运算符，返回所占内存字节数，因此用`sizeof()`计算C风格字符串时，结果会多计算一个终止符。
-3. **ftell函数，tell告知，偏移量**：`long ftell(FILE *stream);`，得到文件位置指针当前位置相对于文件首的偏移字节数。
-4. **rewind函数，rewind倒带，重回开头**：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
+3. <mark>**ftell函数，tell告知，偏移量**</mark>：`long ftell(FILE *stream);`，得到文件位置指针当前位置相对于文件首的偏移字节数。
+4. <mark>**rewind函数，rewind倒带，重回开头**</mark>：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
 5. **write函数**：`ssize_t write(int handle, void *buf, int nbyte);`，能够把指定长度的字节序列从缓冲区插入到输出流中。
 6. 文件读写：
    - `fgetc`：读一个字符。成功返回该字符的`unsigned char`强制转换为`int`的结果，失败返回`EOF`。
@@ -151,7 +151,7 @@
    - 返回0：相等
    - 返回正：str1 > str2
    - 返回负：str1 < str2
-9. **strcat函数，catenate链接，拼接字符串**：`char *strcat(char *dest, const char *src);`，将后者追加至前者（第一个'\n'前的字符串）末尾。
+9. <mark>**strcat函数，catenate链接，拼接字符串**</mark>：`char *strcat(char *dest, const char *src);`，将后者追加至前者（第一个'\n'前的字符串）末尾。
 10. **assert宏**：`void assert(int expression);`，断言出错将输出错误信息并终止程序，无返回值。定义于<assert.h>。
 11. **malloc函数**：`void *malloc(int num);`，**C语言中malloc不需要强制类型转换，从void*到其他类型的指针是自动隐式转换的。**。定义于<stdlib.h>。
 
