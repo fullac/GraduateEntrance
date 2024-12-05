@@ -152,9 +152,11 @@
 53. 关于共用体union、结构体struct、位域：
    - 共用体中不能使用位域；
    - 共用体不可直接赋值，也不可像结构体这样初始化；
-     > ```
-        union Union{
-        }u; u = 10; u```
+     >
+      ```
+     union Union{
+        }u; u = 10; u
+      ```
    - 位域仅限于`int`、`unsigned int`、`signed int`三种类型；
 
 ## II Function&Macro&System Call
