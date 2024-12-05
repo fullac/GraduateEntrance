@@ -154,8 +154,13 @@
    - 共用体不可直接赋值，也不可像结构体这样初始化；
      >
       ```
-     union Union{
-        }u; u = 10; u
+         union Union{
+            int a;
+            double b;
+            char c;
+         }u;
+         u = 10; // 错误，不可直接赋值
+         u = {1, 1.2, 'a'}; //错误，不可这样初始化
       ```
    - 位域仅限于`int`、`unsigned int`、`signed int`三种类型；
 
