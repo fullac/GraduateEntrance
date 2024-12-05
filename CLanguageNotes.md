@@ -66,7 +66,7 @@
 18. 函数原型： `returntype funcname(paratype paraname);`，其中返回类型和参数名可省略。
 19. 指针声明后未初始化，其值是随机的，也是野指针。除此以外，指针越界访问与指针指向的空间被释放，也会导致野指针。
 20. 三目运算符结合性从右到左。
-21. 文件读写模式：
+21. 文件读写模式：均用双引号包裹
     - r读文件，w清空写，a追加写，+表示扩充；
     - b表示二进制文件，t表示text；
     - r和r+文件必须存在，否则返回打开失败；
@@ -151,13 +151,13 @@
    - 浮点数比大小，由于浮点数存在误差，直接比较大小往往不是预期的结果；通常引入一个比要求精度还要小几个数量级的实数epsilon来帮助比较大小，epsilon的取值会影响到比较的结果。
 
 ## II Function&Macro&System Call
-### <stdio.h>
+### <mark>**<stdio.h>**</mark>
 1. <mark>**fseek函数，seek寻找，目标位置**</mark>：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
    > 三个参数分别为，文件指针，位移量，起始点。
 2. <mark>**rewind函数，rewind倒带，重回开头**</mark>：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
 3. <mark>**ftell函数，tell告知，偏移量**</mark>：`long ftell(FILE *stream);`，得到文件位置指针当前位置相对于文件首的偏移字节数。
 4. 文件读写：
-   - `fgetc`：读一个字符。成功返回该字符的`unsigned char`强制转换为`int`的结果，失败返回`EOF`。
+   - `fgetc`：读一个字符。成功返回该字符的`unsigned char`强制转换为`int`的结果，并把位置标识符往后移动。失败返回`EOF`。
    - `fgets`：读出字符串。成功返回指针，失败返回`NULL`。
    - `fputc`：写一个字符。成功返回写入的字符，失败返回`EOF`。
    - `fputs`：写入字符串。成功返回非负值，失败返回`EOF`。
