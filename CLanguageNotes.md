@@ -169,10 +169,10 @@
 
 ## II Function&Macro&System Call
 ### <mark>**<stdio.h>**</mark>
-1. <mark>**fseek函数，seek寻找，目标位置**</mark>：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
+1. **fseek函数，seek寻找，目标位置**：`int fseek( FILE *stream, long offset, int origin );`，功能为移动到文件的某一个位置。
    > 三个参数分别为，文件指针，位移量，起始点。
-2. <mark>**rewind函数，rewind倒带，重回开头**</mark>：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
-3. <mark>**ftell函数，tell告知，偏移量**</mark>：`long ftell(FILE *stream);`，得到文件位置指针当前位置相对于文件首的偏移字节数。
+2. **rewind函数，rewind倒带，重回开头**：`void rewind(FILE *filepointer);`，使位置指针重新返回文件的开头。
+3. **ftell函数，tell告知，偏移量**：`long ftell(FILE *stream);`，得到文件位置指针当前位置相对于文件首的偏移字节数。
 4. 文件读写：
    - `fgetc`：读一个字符。成功返回该字符的`unsigned char`强制转换为`int`的结果，并把位置标识符往后移动。失败返回`EOF`。
    - `fgets`：读出字符串。成功返回指针，失败返回`NULL`。
